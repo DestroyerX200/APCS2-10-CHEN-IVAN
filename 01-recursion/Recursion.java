@@ -24,4 +24,15 @@ public class Recursion {
 		}
 		return sum;
 	}
+	public static double sqrt(double n) {
+		return sqrt(n, n/2, 0.001);
+	}
+	public static double sqrt(double n, double guess, double percentAccuracy) {
+		if (Math.abs(guess * guess - n) <= n * percentAccuracy / 100) {
+			return guess;
+		}
+		else {
+			return sqrt(n, (guess + n / guess) / 2, percentAccuracy);
+		}
+	}
 }

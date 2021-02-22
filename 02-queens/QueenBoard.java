@@ -4,6 +4,17 @@ public class QueenBoard {
 	public boolean addQueen(int r, int c) {
 		if (board[r][c]==0) {
 			board[r][c]--;
+			for (int i=0; (c+i) < board.length &&
+										(r+i) < board.length ||
+										(r-i) >= 0; i++) {
+				board[r][c+i]++;
+				if (r+i < board.length) {
+					board[r+i][c+i]++;
+				}
+				if (r-i >= 0) {
+					board[r+i][c+i]++;
+				}
+			}
 			return true;
 		}
 		return false;
@@ -71,6 +82,9 @@ public class QueenBoard {
 			}
 		}
 
+		if (row < board.length && col < board.length) {
+
+		}
 		return false;
 	}
 

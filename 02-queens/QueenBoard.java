@@ -1,5 +1,5 @@
 public class QueenBoard {
-	public int[][] board;
+	private int[][] board;
 
 	public boolean addQueen(int r, int c) {
 		if (board[r][c]==0) {
@@ -60,7 +60,18 @@ public class QueenBoard {
 	*@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
 	*/
 	public boolean solve() {
-		return true;
+		return false;
+	}
+	public boolean solve(int row, int col) {
+		for (int i = 0; i < board.length; i++) { 
+			for (int j = 0; j < board.length; j++) {
+				if (board[i][j]!= 0) {
+					throw new IllegalStateException("Invalid board state");
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**Find all possible solutions to this size board.

@@ -9,5 +9,6 @@ public class Tester {
 		System.out.println("Function Call: x.removeQueen(2,2)");
 		x.removeQueen(2,2);
 		System.out.println(x);
+		x.solve(0, 0);
 	}
 }

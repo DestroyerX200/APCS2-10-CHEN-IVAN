@@ -92,7 +92,6 @@ public class QueenBoard {
 		}
 
 		if (row < board.length && col < board.length) {
-			System.out.println(this + "\n");
 			if (addQueen(row, col)) {
 				if (col == board.length-1) {
 					return true;
@@ -138,6 +137,9 @@ public class QueenBoard {
 	*@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
 	*/
 	public int countSolutions() {
+		return 0;
+	}
+	public int countSolutions(int row, int col) {
 		return 0;
 	}
 

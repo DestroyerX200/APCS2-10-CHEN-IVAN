@@ -12,7 +12,7 @@ public class Tester {
 		
 		QueenBoard test = new QueenBoard(8);
 
-		test.solve(0, 0);
+		test.solve();
 		System.out.println(test);
 	}
 }

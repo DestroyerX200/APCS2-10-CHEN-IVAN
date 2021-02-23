@@ -10,9 +10,9 @@ public class Tester {
 		// x.removeQueen(0,2);
 		// System.out.println(x);
 		
-		QueenBoard test = new QueenBoard(8);
+		QueenBoard testSolve = new QueenBoard(1);
 
-		test.solve();
-		System.out.println(test);
+		System.out.println(testSolve.solve());
+		System.out.println(testSolve);
 	}
 }

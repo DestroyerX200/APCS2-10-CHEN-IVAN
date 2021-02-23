@@ -2,11 +2,9 @@ public class QueenBoard {
 	private int[][] board;
 
 	public boolean addQueen(int r, int c) {
-		if (board[r][c]==0) {
+		if (board[r][c] == 0) {
 			board[r][c]--;
-			for (int i=1; (c+i) < board.length &&
-										(r+i) < board.length ||
-										(r-i) >= 0; i++) {
+			for (int i=1; (c+i) < board.length; i++) {
 				board[r][c+i]++;
 				if (r+i < board.length) {
 					board[r+i][c+i]++;
@@ -22,9 +20,7 @@ public class QueenBoard {
 	public void removeQueen(int r, int c) {
 		if (board[r][c]==-1) {
 			board[r][c]++;
-			for (int i=1; (c+i) < board.length &&
-										(r+i) < board.length ||
-										(r-i) >= 0; i++) {
+			for (int i=1; (c+i) < board.length; i++) {
 				board[r][c+i]--;
 				if (r+i < board.length) {
 					board[r+i][c+i]--;
@@ -95,12 +91,43 @@ public class QueenBoard {
 			}
 		}
 
-		if (addQueen(row, col)) {
-			if (col == board.length-1) {
-				return true;
+		if (row < board.length && col < board.length) {
+			System.out.println(this + "\n");
+			if (addQueen(row, col)) {
+				if (col == board.length-1) {
+					return true;
+				}
+				else {
+					return solve(0, col+1);
+				}
+			}
+			else if (row == board.length-1) {
+				int rowPrevQueen = 0;
+				while (board[rowPrevQueen][col-1] != -1) {
+					rowPrevQueen++;
+				}
+				removeQueen(rowPrevQueen, col-1);
+				if (rowPrevQueen == board.length-1) {
+					int rowPrevPrevQueen = 0;
+					while (board[rowPrevPrevQueen][col-2] != -1) {
+					rowPrevPrevQueen++;
+					}
+					removeQueen(rowPrevPrevQueen, col-2);
+					return solve(rowPrevPrevQueen+1, col-2);
+				}
+				else {
+					return solve(rowPrevQueen+1, col-1);
+				}
 			}
 			else {
-				solve(row, col+1);
+				return solve(row+1, col);
+			}
+		}
+		else {
+			for (int i = 0; i < board.length; i++) { 
+				for (int j = 0; j < board.length; j++) {
+					board[i][j] = 0;
+				}
 			}
 		}
 		return false;

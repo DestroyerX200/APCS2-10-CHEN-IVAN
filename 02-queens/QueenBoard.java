@@ -1,7 +1,7 @@
 public class QueenBoard {
 	private int[][] board;
 
-	public boolean addQueen(int r, int c) {
+	private boolean addQueen(int r, int c) {
 		if (board[r][c] == 0) {
 			board[r][c]--;
 			for (int i=1; (c+i) < board.length; i++) {
@@ -17,7 +17,7 @@ public class QueenBoard {
 		}
 		return false;
 	}
-	public void removeQueen(int r, int c) {
+	private void removeQueen(int r, int c) {
 		if (board[r][c]==-1) {
 			board[r][c]++;
 			for (int i=1; (c+i) < board.length; i++) {
@@ -91,7 +91,6 @@ public class QueenBoard {
 			}
 		}
 
-		System.out.println(this + "\n");
 		for (int row=0; row<board.length;row++) {
 			if (addQueen(row, col)) {
 				if (col==board.length-1) {
@@ -148,51 +147,33 @@ public class QueenBoard {
 	*@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
 	*/
 	public int countSolutions() {
-		return 0;
+		return countSolutions(0);
 	}
-	public int countSolutions(int row, int col) {
-		// if (row==0 && col==0) {
-		// 	for (int i = 0; i < board.length; i++) { 
-		// 		for (int j = 0; j < board.length; j++) {
-		// 			if (board[i][j]!= 0) {
-		// 				throw new IllegalStateException("Invalid board state");
-		// 			}
-		// 		}
-		// 	}
-		// }
+	public int countSolutions(int col) {
+		if (col==0) {
+			for (int i = 0; i < board.length; i++) { 
+				for (int j = 0; j < board.length; j++) {
+					if (board[i][j]!= 0) {
+						throw new IllegalStateException("Invalid board state");
+					}
+				}
+			}
+		}
 
-		// if (row < board.length && col < board.length) {
-		// 	if (addQueen(row, col)) {
-		// 		if (col == board.length-1) {
-		// 			return 1;
-		// 		}
-		// 		else {
-		// 			return solve(0, col+1);
-		// 		}
-		// 	}
-		// 	else if (row < board.length) {
-		// 		return solve(row+1, col);
-		// 	}
-		// 	//reached end of the column; have to backtrack
-		// 	else if (col >= 1) {
-		// 		int prevQueenRow=0;
-		// 		while (board[prevQueenRow][col-1]!=-1) {
-		// 			prevQueenRow++;
-		// 		}
-		// 		return solve(prevQueenRow+1, col-1);
-		// 	}
-		// }
-		// if (row == board.length && col==0) {
-		// 	return false;
-		// }
-		// else if (col > 0) {
-		// 	int prevQueenRow=0;
-		// 	while (board[prevQueenRow][col-1]!=-1) {
-		// 		prevQueenRow++;
-		// 	}
-		// 	removeQueen(prevQueenRow, col-1);
-		// 	return solve(prevQueenRow+1, col-1);
-		// }
-		return 1;
+		int count=0;
+
+		for (int row=0; row<board.length;row++) {
+			if (addQueen(row, col)) {
+				if (col == board.length-1) {
+					removeQueen(row, col);
+					return 1;
+				}
+				else {
+					count+=countSolutions(col+1);
+					removeQueen(row, col);
+				}
+			}
+		}
+		return count;
 	}
 }

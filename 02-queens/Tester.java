@@ -10,8 +10,12 @@ public class Tester {
 		// x.removeQueen(0,2);
 		// System.out.println(x);
 		
-		QueenBoard testSolve = new QueenBoard(25);
+		QueenBoard testSolve = new QueenBoard(8);
 		System.out.println(testSolve.solve());
 		System.out.println(testSolve + "\n");
+
+		QueenBoard testCountSolutions = new QueenBoard(8);
+		System.out.println(testCountSolutions.countSolutions());
+		System.out.println(testCountSolutions);
 	}
 }

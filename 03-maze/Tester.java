@@ -7,6 +7,7 @@ public class Tester {
 		try {
 			f = new Maze(filename);
 			System.out.println(Arrays.deepToString(f.maze));
+			System.out.println(f);
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("File not found: "+filename);

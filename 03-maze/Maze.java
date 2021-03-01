@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class Maze {
 
-  public char[][]maze;
+  private char[][]maze;
   private boolean animate; //false by default
 
   /*Constructor loads a maze text file, and sets animate to false by default.
@@ -54,8 +54,8 @@ public class Maze {
   }
 
   public static void clearTerminal() {
-      //erase terminal
-      System.out.println("\033[2J");
+    //erase terminal
+    System.out.println("\033[2J");
   }
   public static void gotoTop() {
     //go to top left of screen
@@ -84,13 +84,18 @@ public class Maze {
     Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
   */
   public int solve() {
-          //only clear the terminal if you are running animation
-          if(animate){
-            clearTerminal();
-          }
-          //start solving at the location of the s.
-          //return solve(???,???);
-          return 0;
+    //only clear the terminal if you are running animation
+    if(animate){
+      clearTerminal();
+    }
+    for (int row=0; row < maze.length; row++) {
+      for (int col=0; col < maze[0].length; col++) {
+        if (maze[row][col] == 'S') {
+          return solve(row, col, 0);
+        }
+      }
+    }
+    return -1;
   }
 
   /*
@@ -107,15 +112,46 @@ public class Maze {
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int row, int col) { //you can add more parameters since this is private
-      //automatic animation! You are welcome.
-      if(animate){
-          gotoTop();
-          System.out.println(this);
-          wait(50);
+  private int solve(int row, int col, int steps) { //you can add more parameters since this is private
+    //automatic animation! You are welcome.
+    if(animate){
+        gotoTop();
+        System.out.println(this);
+        wait(50);
+    }
+    if (maze[row][col] == 'E') {
+      return steps;
+    }
+    maze[row][col] = '@';
+    if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E') {
+      return solve(row, col+1, steps+1);
+    }
+    else if (maze[row][col-1] == ' ' || maze[row][col-1] == 'E') {
+      return solve(row, col-1, steps+1);
+    }
+    else if (maze[row+1][col] == ' ' || maze[row+1][col] == 'E') {
+      return solve(row+1, col, steps+1);
+    }
+    else if (maze[row-1][col] == ' ' || maze[row-1][col] == 'E') {
+      return solve(row-1, col, steps+1);
+    }
+    else {
+      maze[row][col] = '.';
+      if (maze[row][col+1] == '@') {
+        return solve(row, col+1, steps-1);
+    }
+      else if (maze[row][col-1] == '@') {
+        return solve(row, col-1, steps-1);
       }
-
-      //COMPLETE SOLVE
-      return -1; //so it compiles
+      else if (maze[row+1][col] == '@') {
+        return solve(row+1, col, steps-1);
+      }
+      else if (maze[row-1][col] == '@') {
+        return solve(row-1, col, steps-1);
+      }
+      else {
+        return -1;
+      }
+    }
   }
 }

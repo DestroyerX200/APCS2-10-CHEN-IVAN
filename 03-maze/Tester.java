@@ -6,7 +6,10 @@ public class Tester {
 		String filename = args[0];
 		try {
 			f = new Maze(filename);
-			System.out.println(Arrays.deepToString(f.maze));
+			// System.out.println(Arrays.deepToString(f.maze));
+			// System.out.println(f);
+			f.setAnimate(true);
+			System.out.println(f.solve());
 			System.out.println(f);
 		}
 		catch (FileNotFoundException e) {

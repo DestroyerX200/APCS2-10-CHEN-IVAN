@@ -19,6 +19,7 @@ public class Maze{
     So you don't have to check for out of bounds!
   */
   public Maze(String filename) throws FileNotFoundException{
+    animate = false;
     File f = new File(filename);
     Scanner s = new Scanner(f);
 

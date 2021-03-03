@@ -7,6 +7,13 @@ public class GenTester {
 			int index = (int) (4*Math.random());
 			counter[index]++;
 		}
-		System.out.println(Arrays.toString(counter));
+		char[][] test = new char[20][15];
+		for (int row=0; row < 20; row++) {
+			for (int col=0; col < 15; col++) {
+				test[row][col]='#';
+			}
+		}
+		MazeGenerator.generate(test, 0, 0, 3, 5);
+		System.out.println(MazeGenerator.toString(test));
 	}
 }

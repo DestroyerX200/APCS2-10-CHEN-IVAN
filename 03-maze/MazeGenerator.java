@@ -1,8 +1,27 @@
 import java.util.*;
 import java.io.*;
 public class MazeGenerator {
+	private boolean animate = false;
 	public static void generate(char[][]maze, int rows, int cols, int startrow, int startcol) {
-		
+		maze[startrow][startcol] = ' ';
+		ArrayList<String> directions = possibleDirections(maze, startrow, startcol);
+		while (directions.size() > 0) {
+			int index = (int) (directions.size() * Math.random());
+			String direction = directions.get(index);
+			directions.remove(index);
+			if (direction.equals("right")) {
+				generate(maze, rows, cols, startrow, startcol+1);
+			}
+			else if (direction.equals("left")) {
+				generate(maze, rows, cols, startrow, startcol-1);
+			}
+			else if (direction.equals("up")) {
+				generate(maze, rows, cols, startrow-1, startcol);
+			}
+			else if (direction.equals("down")) {
+				generate(maze, rows, cols, startrow+1, startcol);
+			}
+		}
 	}
 	private static boolean checkAdjacent(char[][] maze, int row, int col) {
 		int adjCounter = 0;

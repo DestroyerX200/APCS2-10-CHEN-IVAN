@@ -57,4 +57,30 @@ public class USACO {
 			}
 		}
 	}
+	public static long silver(String filename) throws FileNotFoundException {
+		File f = new File(filename);
+		Scanner s = new Scanner(f);
+		Scanner firstLine = new Scanner(s.nextLine());
+		int rows = Integer.parseInt(firstLine.next());
+		int cols = Integer.parseInt(firstLine.next());
+		int seconds = Integer.parseInt(firstLine.next());
+
+		long[][] pasture = makeArraySilver(rows, cols, s);
+		return -1;
+	}
+	private static long[][] makeArraySilver(int rows, int cols, Scanner s) {
+		long[][] retArray = new long[rows][cols];
+		for (int row=0; row < rows; row++) {
+			String k = s.nextLine();
+			for (int col=0; col < cols; col++) {
+				if (k.charAt(col)=='.') {
+					retArray[row][col]=0;
+				}
+				else {
+					retArray[row][col]=-1;
+				}
+			}
+		}
+		return retArray;
+	}
 }

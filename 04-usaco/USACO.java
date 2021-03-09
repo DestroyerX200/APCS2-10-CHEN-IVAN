@@ -66,7 +66,18 @@ public class USACO {
 		int seconds = Integer.parseInt(firstLine.next());
 
 		long[][] pasture = makeArraySilver(rows, cols, s);
-		return -1;
+
+		Scanner lastLine = new Scanner(s.nextLine());
+		int rowStart = lastLine.nextInt()-1;
+		int colStart = lastLine.nextInt()-1;
+		int rowGoal = lastLine.nextInt()-1;
+		int colGoal = lastLine.nextInt()-1;
+		pasture[rowStart][colStart]=1;
+		for (int i=0; i < seconds; i++) {
+			pasture = iterate(pasture);
+			System.out.println(Arrays.deepToString(pasture));
+		}
+		return pasture[rowGoal][colGoal];
 	}
 	private static long[][] makeArraySilver(int rows, int cols, Scanner s) {
 		long[][] retArray = new long[rows][cols];
@@ -82,5 +93,32 @@ public class USACO {
 			}
 		}
 		return retArray;
+	}
+	private static long[][] iterate(long[][] oldPasture) {
+		int rows = oldPasture.length;
+		int cols = oldPasture[0].length;
+		long[][] newPasture = new long[rows][cols];
+		for (int r=0; r < rows; r++) {
+			for (int c=0; c < cols; c++) {
+				if (oldPasture[r][c]!=-1) {
+					if (r > 0 && oldPasture[r-1][c]!=-1) {
+						newPasture[r-1][c]+=oldPasture[r][c];
+					}
+					if (r < rows-1 && oldPasture[r+1][c]!=-1) {
+						newPasture[r+1][c]+=oldPasture[r][c];
+					}
+					if (c > 0 && oldPasture[r][c-1]!=-1) {
+						newPasture[r][c-1]+=oldPasture[r][c];
+					}
+					if (c < cols-1 && oldPasture[r][c+1]!=-1) {
+						newPasture[r][c+1]+=oldPasture[r][c];
+					}
+				}
+				else {
+					newPasture[r][c]=-1;
+				}
+			}
+		}
+		return newPasture;
 	}
 }

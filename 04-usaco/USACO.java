@@ -19,7 +19,15 @@ public class USACO {
 			int d_s = line.nextInt();
 			stomp(grid, r_s, c_s, d_s);
 		}
-		return -1;
+		int aggregatedDepth=0;
+		for (int i=0; i<rows; i++) {
+			for (int j=0; j<cols; j++) {
+				if (elevation - grid[i][j] > 0) {
+					aggregatedDepth += elevation-grid[i][j];
+				}
+			}
+		}
+		return aggregatedDepth*72*72;
 	}
 	private static int[][] makeArrayBronze(int rows, int cols, Scanner s) {
 		int[][] retArray = new int[rows][cols];

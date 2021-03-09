@@ -5,7 +5,7 @@ public class Tester {
 	public static void main(String[] args) {
 		String filename = args[0];
 		try {
-			USACO.bronze(filename);
+			System.out.println(USACO.bronze(filename));
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("File not found: " + filename);

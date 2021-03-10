@@ -17,6 +17,10 @@ public class Preliminary {
 			}
 			else if (Math.random() < 0.5) {
 				swap(data, si, ei);
+				ei--;
+			}
+			else {
+				si++;
 			}
 		}
 		if (data[si] < pivot) {

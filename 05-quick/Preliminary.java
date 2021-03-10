@@ -7,7 +7,7 @@ public class Preliminary {
 		int si = start+1;
 		int ei = end;
 
-		while (si >= ei) {
+		while (si <= ei) {
 			if (data[si] < pivot) {
 				si++;
 			}

@@ -22,11 +22,11 @@ public class Quick {
 			}
 			else if (right) {
 				swap(data, si, ei);
-				right = true;
+				right = false;
 				ei--;
 			}
 			else {
-				right = false;
+				right = true;
 				si++;
 			}
 		}
@@ -58,5 +58,15 @@ public class Quick {
 			pivotIndex = partition(data, start, end);
 		}
 		return data[k];
+	}
+	public static void quicksort(int[] data) {
+		quicksort(data, 0, data.length-1);
+	}
+	private static void quicksort(int[] data, int start, int end) {
+		if (start <= end) {
+			int pivotIndex = partition(data, start, end);
+			quicksort(data, pivotIndex+1, end);
+			quicksort(data, start, pivotIndex-1);
+		}
 	}
 }

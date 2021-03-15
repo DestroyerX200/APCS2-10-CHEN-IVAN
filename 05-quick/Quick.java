@@ -109,4 +109,29 @@ public class Quick {
 		retArray[1] = ei;
 		return retArray;
 	}
+	public static int median3(int[] data) {
+		int v0 = data[0];
+		int v1 = data[1];
+		int v2 = data[2];
+		if (v0 < v1) {
+			if (v1 < v2) {
+				return 1;
+			}
+			else if (v2 > v0) {
+				return 2;
+			}
+			else {
+				return 0;
+			}
+		}
+		else if (v0 < v2) {
+				return 0;
+		}
+		else if (v2 > v1) {
+			return 2;
+		}
+		else {
+			return 1;
+		}			
+	}
 }

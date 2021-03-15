@@ -50,6 +50,14 @@ public class Tester {
 		System.out.println(Arrays.toString(Quick.partitionDutch(test3, 0, 13)));
 		System.out.println(Arrays.toString(test3));
 
+		int[] a = {1,2,3};
+		int[] b = {3,2,1};
+		int[] c = {1,3,2};
+		int[] d = {2,3,1};
+		System.out.println(Quick.median3(a));
+		System.out.println(Quick.median3(b));
+		System.out.println(Quick.median3(c));
+		System.out.println(Quick.median3(d));
 		// if (args.length != 3) {
 		// 	System.out.println("javac Tester size type seed");
 		// 	System.out.println("types: random, sorted, reverse, equal");
@@ -89,7 +97,6 @@ public class Tester {
 		// }
 	}
 	public static int[] generateArrayRandom(int sizeOfArray, int seed) {
-
 		int[] retArray = new int[sizeOfArray];
 		Random rng = new Random(seed);
 		for (int i=0; i<sizeOfArray; i++) {

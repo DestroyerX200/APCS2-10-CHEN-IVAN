@@ -10,6 +10,8 @@ public class Quick {
 		int si = start+1;
 		int ei = end;
 
+		boolean right = false;
+
 		while (si < ei) {
 			if (data[si] < pivot) {
 				si++;
@@ -18,15 +20,17 @@ public class Quick {
 				swap(data, si, ei);
 				ei--;
 			}
-			else if (Math.random() < 0.5) {
+			else if (right) {
 				swap(data, si, ei);
+				right = true;
 				ei--;
 			}
 			else {
+				right = false;
 				si++;
 			}
 		}
-		if (data[si] <= pivot) {
+		if (data[si] < pivot) {
 			swap(data, si, start);
 			return si;
 		}
@@ -46,10 +50,10 @@ public class Quick {
 		int pivotIndex = partition(data, start, end);
 		while (k != pivotIndex) {
 			if (k < pivotIndex) {
-				end = pivotIndex;
+				end = pivotIndex-1;
 			}
 			else {
-				start = pivotIndex;
+				start = pivotIndex+1;
 			}
 			pivotIndex = partition(data, start, end);
 		}

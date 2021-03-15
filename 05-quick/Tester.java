@@ -36,65 +36,61 @@ public class Tester {
 		// }
 		// Quick.quicksort(ourArray);
 		// System.out.println(Arrays.equals(sortedArray, Quick.quicksort(ourArray)));
-		int[] test1 = {999,999,999,4,3,2,1,0,999,999,999};
-		System.out.println(Arrays.toString(Quick.partitionDutch(test1, 3, 7)));
-		System.out.println(Arrays.toString(test1));
-		int[] test2 = {999,999,999,4,3,2,1,0,999,999,999};
-		System.out.println(Arrays.toString(Quick.partitionDutch(test2, 5, 5)));
-		System.out.println(Arrays.toString(test2));
-		System.out.println(Arrays.toString(Quick.partitionDutch(test2, 6, 6)));
-		System.out.println(Arrays.toString(test2));
-		System.out.println(Arrays.toString(Quick.partitionDutch(test2, 7, 7)));
-		System.out.println(Arrays.toString(test2));
-		int[] test3 = {50,50,50,100,50,50,50,0,50,50,50,50,50,50};
-		System.out.println(Arrays.toString(Quick.partitionDutch(test3, 0, 13)));
-		System.out.println(Arrays.toString(test3));
+		// int[] test1 = {999,999,999,4,3,2,1,0,999,999,999};
+		// System.out.println(Arrays.toString(Quick.partitionDutch(test1, 3, 7)));
+		// System.out.println(Arrays.toString(test1));
+		// int[] test2 = {999,999,999,4,3,2,1,0,999,999,999};
+		// System.out.println(Arrays.toString(Quick.partitionDutch(test2, 5, 5)));
+		// System.out.println(Arrays.toString(test2));
+		// System.out.println(Arrays.toString(Quick.partitionDutch(test2, 6, 6)));
+		// System.out.println(Arrays.toString(test2));
+		// System.out.println(Arrays.toString(Quick.partitionDutch(test2, 7, 7)));
+		// System.out.println(Arrays.toString(test2));
+		// int[] test3 = {50,50,50,100,50,50,50,0,50,50,50,50,50,50};
+		// System.out.println(Arrays.toString(Quick.partitionDutch(test3, 0, 13)));
+		// System.out.println(Arrays.toString(test3));
 
-		int[] a = {1,2,3};
-		int[] b = {3,2,1};
-		int[] c = {1,3,2};
-		int[] d = {2,3,1};
-		System.out.println(Quick.median3(a));
-		System.out.println(Quick.median3(b));
-		System.out.println(Quick.median3(c));
-		System.out.println(Quick.median3(d));
-		// if (args.length != 3) {
-		// 	System.out.println("javac Tester size type seed");
-		// 	System.out.println("types: random, sorted, reverse, equal");
-		// }
-		// int size = Integer.parseInt(args[0]);
-		// String type = args[1];
-		// int seed = Integer.parseInt(args[2]);
+		// int[] test = {-15,8,1,2,6,9,4,3,5,7};
+		// Quick.quicksort(test);
+		// System.out.println(Arrays.toString(test));
 
-		// if (type.equals("sorted")) {
-		// 	int[] data = new int[size];
-		// 	for (int i=0; i<size; i++) {
-		// 		data[i] = i;
-		// 	}
-		// 	Quick.quicksort(data);
-		// 	System.out.println(sorted(data));
-		// }
-		// else if (type.equals("reverse")) {
-		// 	int[] data = new int[size];
-		// 	for (int i=0; i<size; i++) {
-		// 		data[i] = size-i;
-		// 	}
-		// 	Quick.quicksort(data);
-		// 	System.out.println(sorted(data));
-		// }
-		// else if (type.equals("equal")) {
-		// 	int[] data = new int[size];
-		// 	for (int i=0; i<size; i++) {
-		// 		data[i] = 1;
-		// 	}
-		// 	Quick.quicksort(data);
-		// 	System.out.println(sorted(data));
-		// }
-		// else {
-		// 	int[] data = generateArrayRandom(size, seed);
-		// 	Quick.quicksort(data);
-		// 	System.out.println(sorted(data));
-		// }
+		if (args.length != 3) {
+			System.out.println("javac Tester size type seed");
+			System.out.println("types: random, sorted, reverse, equal");
+		}
+		int size = Integer.parseInt(args[0]);
+		String type = args[1];
+		int seed = Integer.parseInt(args[2]);
+
+		if (type.equals("sorted")) {
+			int[] data = new int[size];
+			for (int i=0; i<size; i++) {
+				data[i] = i;
+			}
+			Quick.quicksort(data);
+			System.out.println(sorted(data));
+		}
+		else if (type.equals("reverse")) {
+			int[] data = new int[size];
+			for (int i=0; i<size; i++) {
+				data[i] = size-i;
+			}
+			Quick.quicksort(data);
+			System.out.println(sorted(data));
+		}
+		else if (type.equals("equal")) {
+			int[] data = new int[size];
+			for (int i=0; i<size; i++) {
+				data[i] = 1;
+			}
+			Quick.quicksort(data);
+			System.out.println(sorted(data));
+		}
+		else {
+			int[] data = generateArrayRandom(size, seed);
+			Quick.quicksort(data);
+			System.out.println(sorted(data));
+		}
 	}
 	public static int[] generateArrayRandom(int sizeOfArray, int seed) {
 		int[] retArray = new int[sizeOfArray];

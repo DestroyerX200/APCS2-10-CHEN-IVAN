@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Quick {
 	public static int partition (int[] data, int start, int end) {
 		if (start==end) {
@@ -63,10 +64,15 @@ public class Quick {
 		quicksort(data, 0, data.length-1);
 	}
 	private static void quicksort(int[] data, int start, int end) {
+		// if (start <= end) {
+		// 	int pivotIndex = partition(data, start, end);
+		// 	quicksort(data, pivotIndex+1, end);
+		// 	quicksort(data, start, pivotIndex-1);
+		// }
 		if (start <= end) {
-			int pivotIndex = partition(data, start, end);
-			quicksort(data, pivotIndex+1, end);
-			quicksort(data, start, pivotIndex-1);
+			int[] bounds = partitionDutch(data, start, end);
+			quicksort(data, bounds[1]+1, end);
+			quicksort(data, start, bounds[0]-1);
 		}
 	}
 	public static int[] partitionDutch(int[] data, int start, int end) {
@@ -76,10 +82,16 @@ public class Quick {
 			retArray[1] = end;
 			return retArray;
 		}
-		int randomIndex = start + (int) ( Math.random()*(end-start));
-		System.out.println(randomIndex);
-		swap(data, start, randomIndex);
-		int pivot = data[start];
+		int middle = start+(end-start)/2;
+		int pivot = median3(data[start], data[middle], data[end]);
+		int pivotIndex = start;
+		if (pivot==data[middle]) {
+			pivotIndex = middle;
+		}
+		else if (pivot==data[end]) {
+			pivotIndex = end;
+		}
+		swap(data, start, pivotIndex);
 
 		int si = start+1;
 		int ci = start+1;
@@ -100,38 +112,41 @@ public class Quick {
 		}
 		if (data[ci] < pivot) {
 			swap(data, ci, start);
+			ei--;
+		}
+		else if (data[ci] == pivot) {
+			si--;
+			swap(data, si, start);
 		}
 		else {
 			si--;
 			swap(data, si, start);
+			ei--;
 		}
 		retArray[0] = si;
 		retArray[1] = ei;
 		return retArray;
 	}
-	public static int median3(int[] data) {
-		int v0 = data[0];
-		int v1 = data[1];
-		int v2 = data[2];
+	public static int median3(int v0, int v1, int v2) {
 		if (v0 < v1) {
 			if (v1 < v2) {
-				return 1;
+				return v1;
 			}
 			else if (v2 > v0) {
-				return 2;
+				return v2;
 			}
 			else {
-				return 0;
+				return v0;
 			}
 		}
 		else if (v0 < v2) {
-				return 0;
+				return v0;
 		}
 		else if (v2 > v1) {
-			return 2;
+			return v2;
 		}
 		else {
-			return 1;
+			return v1;
 		}			
 	}
 }

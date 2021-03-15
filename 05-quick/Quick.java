@@ -70,17 +70,21 @@ public class Quick {
 		}
 	}
 	public static int[] partitionDutch(int[] data, int start, int end) {
-		if (start==end) {
-			return start;
+		int[] retArray = new int[2];
+		if (start == end) {
+			retArray[0] = start;
+			retArray[1] = end;
+			return retArray;
 		}
 		int randomIndex = start + (int) ( Math.random()*(end-start));
+		System.out.println(randomIndex);
 		swap(data, start, randomIndex);
 		int pivot = data[start];
 
 		int si = start+1;
 		int ci = start+1;
 		int ei = end;
-		while (ci < end) {
+		while (ci < ei) {
 			if (data[ci] < pivot) {
 				swap(data, si, ci);
 				si++;
@@ -101,6 +105,8 @@ public class Quick {
 			si--;
 			swap(data, si, start);
 		}
-		return {si, ei};
+		retArray[0] = si;
+		retArray[1] = ei;
+		return retArray;
 	}
 }

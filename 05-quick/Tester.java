@@ -50,12 +50,12 @@ public class Tester {
 		// System.out.println(Arrays.toString(Quick.partitionDutch(test3, 0, 13)));
 		// System.out.println(Arrays.toString(test3));
 
-		// int[] test = {-15,8,1,2,6,9,4,3,5,7};
+		// int[] test = {10,9,8,7,6,5,4,3,2,1,0};
 		// Quick.quicksort(test);
 		// System.out.println(Arrays.toString(test));
 
 		if (args.length != 3) {
-			System.out.println("javac Tester size type seed");
+			System.out.println("java Tester size type seed");
 			System.out.println("types: random, sorted, reverse, equal");
 		}
 		int size = Integer.parseInt(args[0]);

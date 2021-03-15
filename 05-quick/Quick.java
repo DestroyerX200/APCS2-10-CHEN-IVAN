@@ -64,7 +64,9 @@ public class Quick {
 		quicksort(data, 0, data.length-1);
 	}
 	private static void quicksort(int[] data, int start, int end) {
+		// System.out.println(Arrays.toString(data) +"\n");
 		// if (start <= end) {
+		// 	// System.out.println(Arrays.toString(data) +"\n");
 		// 	int pivotIndex = partition(data, start, end);
 		// 	quicksort(data, pivotIndex+1, end);
 		// 	quicksort(data, start, pivotIndex-1);
@@ -82,16 +84,9 @@ public class Quick {
 			retArray[1] = end;
 			return retArray;
 		}
-		int middle = start+(end-start)/2;
-		int pivot = median3(data[start], data[middle], data[end]);
-		int pivotIndex = start;
-		if (pivot==data[middle]) {
-			pivotIndex = middle;
-		}
-		else if (pivot==data[end]) {
-			pivotIndex = end;
-		}
-		swap(data, start, pivotIndex);
+		int randomIndex = start + (int) ( Math.random()*(end-start));
+		swap(data, start, randomIndex);
+		int pivot = data[start];
 
 		int si = start+1;
 		int ci = start+1;
@@ -112,7 +107,6 @@ public class Quick {
 		}
 		if (data[ci] < pivot) {
 			swap(data, ci, start);
-			ei--;
 		}
 		else if (data[ci] == pivot) {
 			si--;

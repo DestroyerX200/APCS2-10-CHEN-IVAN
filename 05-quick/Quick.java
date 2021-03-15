@@ -4,7 +4,6 @@ public class Quick {
 			return start;
 		}
 		int randomIndex = start + (int) ( Math.random()*(end-start));
-		System.out.println(randomIndex);
 		swap(data, start, randomIndex);
 		int pivot = data[start];
 
@@ -40,5 +39,20 @@ public class Quick {
 		int temp = data[i1];
 		data[i1] = data[i2];
 		data[i2] = temp;
+	}
+	public static int quickselect(int []data, int k) {
+		int start = 0;
+		int end = data.length-1;
+		int pivotIndex = partition(data, start, end);
+		while (k != pivotIndex) {
+			if (k < pivotIndex) {
+				end = pivotIndex;
+			}
+			else {
+				start = pivotIndex;
+			}
+			pivotIndex = partition(data, start, end);
+		}
+		return data[k];
 	}
 }

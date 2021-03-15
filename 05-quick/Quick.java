@@ -69,4 +69,38 @@ public class Quick {
 			quicksort(data, start, pivotIndex-1);
 		}
 	}
+	public static int[] partitionDutch(int[] data, int start, int end) {
+		if (start==end) {
+			return start;
+		}
+		int randomIndex = start + (int) ( Math.random()*(end-start));
+		swap(data, start, randomIndex);
+		int pivot = data[start];
+
+		int si = start+1;
+		int ci = start+1;
+		int ei = end;
+		while (ci < end) {
+			if (data[ci] < pivot) {
+				swap(data, si, ci);
+				si++;
+				ci++;
+			}
+			else if (data[ci] == pivot) {
+				ci++;
+			}
+			else {
+				swap(data, ci, ei);
+				ei--;
+			}
+		}
+		if (data[ci] < pivot) {
+			swap(data, ci, start);
+		}
+		else {
+			si--;
+			swap(data, si, start);
+		}
+		return {si, ei};
+	}
 }

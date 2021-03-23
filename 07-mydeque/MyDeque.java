@@ -44,4 +44,28 @@ public class MyDeque<E> {
 		retStr += "}";
 		return retStr;
 	}
+  public void addFirst(E element) throws NullPointerException {
+  	if (element==null) {
+  		throw new NullPointerException();
+  	}
+  	else {
+	  	start--;
+	  	data[start] = element;
+	  	if (size==1) {
+	  		end = start;
+	  	}
+  	}
+  }
+  public void addLast(E element) throws NullPointerException {
+  	if (element==null) {
+  		throw new NullPointerException();
+  	}
+  	else {
+	  	end++;
+	  	data[end] = element;
+	  	if (size==1) {
+	  		start=end;
+	  	}
+  	}
+  }
 }

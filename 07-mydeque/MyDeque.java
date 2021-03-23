@@ -1,7 +1,8 @@
 import java.util.NoSuchElementException;
+import java.util.Arrays;
 public class MyDeque<E> {
-	private E[] data;
-	private int size, start, end;
+	public E[] data;
+	public int size, start, end;
 
 	public MyDeque() {
     @SuppressWarnings("unchecked")
@@ -31,9 +32,12 @@ public class MyDeque<E> {
 		int length=data.length;
 		String retStr ="{";
 		int index = start;
-		for (int i=0; i<size; i++) {
-			retStr+= data[index%length] + ", ";
-			index++;
+		for (int i=0; i<size;) {
+			if (data[index%length]!=null) {
+				retStr+= data[index%length] + ", ";
+				i++;
+				index++;
+			}
 		}
 		if (retStr.length() > 2) {
 			retStr = retStr.substring(0,retStr.length()-2);
@@ -45,15 +49,23 @@ public class MyDeque<E> {
   	if (element==null) {
   		throw new NullPointerException();
   	}
-  	if (size==1) {
+  	if (size==data.length) {
+  		resize();
+  	}
+  	if (start==0) {
+  		start = data.length-1;
+  		data[start] = element;
+  		size++;
+  	}
+  	else if (size==1) {
+  		E temp = getFirst();
   		start=data.length-1;
   		end=0;
-  		E temp = getFirst();
   		data[end] = temp;
   		data[start] = element;
   		size++;
   	}
-  	else { 
+  	else {
 			size++;
 	  	start--;
 	  	data[start] = element;
@@ -66,10 +78,18 @@ public class MyDeque<E> {
   	if (element==null) {
   		throw new NullPointerException();
   	}
-  	if (size==1) {
+  	if (size==data.length) {
+  		resize();
+  	}
+  	if (end == data.length-1) {
+  		end = 0;
+  		data[end] = element;
+  		size++;
+  	}
+  	else if (size==1) {
+  		E temp = getFirst();
 			start=data.length-1;
   		end=0;
-  		E temp = getFirst();
   		data[start] = temp;
   		data[end] = element;
   		size++;
@@ -91,8 +111,15 @@ public class MyDeque<E> {
   	data[start] = null;
   	start++;
   	size--;
+  	if (start == data.length) {
+  		start = 0;
+  	}
   	if(size==1) {
   		start=end;
+  	}
+  	if (size==0) {
+  		start = data.length;
+  		end=-1;
   	}
   	return retVal;
   }
@@ -104,8 +131,15 @@ public class MyDeque<E> {
   	data[end] = null;
   	end--;
   	size--;
+  	if (end == -1) {
+  		end = data.length-1;
+  	}
   	if(size==1) {
   		end = start;
+  	}
+  	if (size==0) {
+  		start = data.length;
+  		end = -1;
   	}
   	return retVal;
   }
@@ -120,5 +154,30 @@ public class MyDeque<E> {
   		throw new NoSuchElementException();
   	}
   	return data[end];
+  }
+  private void resize() {
+  	@SuppressWarnings("unchecked")
+		E[] newData = (E[]) new Object[2*data.length];
+		int newSi = newData.length;
+		int oldSi = data.length;
+		while (oldSi > start) {
+			oldSi--;
+			if (data[oldSi]!=null) {
+				newSi--;
+				newData[newSi] = data[oldSi];
+			}
+		}
+		int newEi = -1;
+		int oldEi = -1;
+		while (oldEi < end) {
+			oldEi++;
+			if (data[oldEi]!=null) {
+				newEi++;
+				newData[newEi] = data[oldEi];
+			}
+		}
+		data = newData;
+		start = newSi;
+		end = newEi;
   }
 }

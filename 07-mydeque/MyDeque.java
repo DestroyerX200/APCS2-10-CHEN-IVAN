@@ -88,7 +88,12 @@ public class MyDeque<E> {
   		throw new NoSuchElementException();
   	}
   	E retVal = getFirst();
-
+  	data[start] = null;
+  	start++;
+  	size--;
+  	if(size==1) {
+  		start=end;
+  	}
   	return retVal;
   }
   public E removeLast() throws NoSuchElementException {
@@ -96,6 +101,12 @@ public class MyDeque<E> {
   		throw new NoSuchElementException();
   	}
   	E retVal = getLast();
+  	data[end] = null;
+  	end--;
+  	size--;
+  	if(size==1) {
+  		end = start;
+  	}
   	return retVal;
   }
   public E getFirst() throws NoSuchElementException {

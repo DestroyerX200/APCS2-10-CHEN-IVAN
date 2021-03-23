@@ -1,6 +1,7 @@
+import java.util.NoSuchElementException;
 public class MyDeque<E> {
-	public E[] data;
-	public int size, start, end;
+	private E[] data;
+	private int size, start, end;
 
 	public MyDeque() {
     @SuppressWarnings("unchecked")
@@ -70,5 +71,29 @@ public class MyDeque<E> {
   	if (size==1) {
   		start=end;
   	}
+  }
+  // public E removeFirst() throws NoSuchElementException {
+  // 	if (size==0) {
+  // 		throw new NoSuchElementException();
+  // 	}
+  // 	return;
+  // }
+  // public E removeLast() throws NoSuchElementException {
+  // 	if (size==0) {
+  // 		throw new NoSuchElementException();
+  // 	}
+  // 	return;
+  // }
+  public E getFirst() throws NoSuchElementException {
+  	if (size==0) {
+  		throw new NoSuchElementException();
+  	}
+  	return data[start];
+  }
+  public E getLast() throws NoSuchElementException {
+  	if (size==0) {
+  		throw new NoSuchElementException();
+  	}
+  	return data[end];
   }
 }

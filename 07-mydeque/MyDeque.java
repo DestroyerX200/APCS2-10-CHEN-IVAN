@@ -11,19 +11,16 @@ public class MyDeque<E> {
     start = 10;
     end = -1;
 	}
-
 	public MyDeque(int initialCapacity) {
 		if (initialCapacity < 10) {
 			initialCapacity=10;
 		}
-		else {
-			@SuppressWarnings("unchecked")
-			E[] d = (E[])new Object[initialCapacity];
-	    data = d;
-	    size = 0;
-	    start = initialCapacity;
-	    end = -1;
-	  }
+		@SuppressWarnings("unchecked")
+		E[] d = (E[])new Object[initialCapacity];
+    data = d;
+    size = 0;
+    start = initialCapacity;
+    end = -1;
 	}
 
 	public int size() {
@@ -48,42 +45,59 @@ public class MyDeque<E> {
   	if (element==null) {
   		throw new NullPointerException();
   	}
-  	if (start==0) {
-  		start=size;
-  	}
-		size++;
-  	start--;
-  	data[start] = element;
   	if (size==1) {
-  		end = start;
+  		start=data.length-1;
+  		end=0;
+  		E temp = getFirst();
+  		data[end] = temp;
+  		data[start] = element;
+  		size++;
   	}
+  	else { 
+			size++;
+	  	start--;
+	  	data[start] = element;
+	  	if (size==1) {
+	  		end = start;
+	  	}
+	  }
   }
   public void addLast(E element) throws NullPointerException {
   	if (element==null) {
   		throw new NullPointerException();
   	}
-  	if (end==data.length-1) {
-  		end=-1;
-  	}
-		size++;
-  	end++;
-  	data[end] = element;
   	if (size==1) {
-  		start=end;
+			start=data.length-1;
+  		end=0;
+  		E temp = getFirst();
+  		data[start] = temp;
+  		data[end] = element;
+  		size++;
   	}
+  	else {
+			size++;
+	  	end++;
+	  	data[end] = element;
+	  	if (size==1) {
+	  		start=end;
+	  	}
+	  }
   }
-  // public E removeFirst() throws NoSuchElementException {
-  // 	if (size==0) {
-  // 		throw new NoSuchElementException();
-  // 	}
-  // 	return;
-  // }
-  // public E removeLast() throws NoSuchElementException {
-  // 	if (size==0) {
-  // 		throw new NoSuchElementException();
-  // 	}
-  // 	return;
-  // }
+  public E removeFirst() throws NoSuchElementException {
+  	if (size==0) {
+  		throw new NoSuchElementException();
+  	}
+  	E retVal = getFirst();
+
+  	return retVal;
+  }
+  public E removeLast() throws NoSuchElementException {
+  	if (size==0) {
+  		throw new NoSuchElementException();
+  	}
+  	E retVal = getLast();
+  	return retVal;
+  }
   public E getFirst() throws NoSuchElementException {
   	if (size==0) {
   		throw new NoSuchElementException();

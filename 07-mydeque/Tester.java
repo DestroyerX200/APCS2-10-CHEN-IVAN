@@ -1,7 +1,20 @@
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 public class Tester {
 	public static void main(String[] args) {
-		MyDeque<String> fruits = new MyDeque<String>();
+		MyDeque<String> fruits = new MyDeque<String>(0);
+		try {
+			fruits.getFirst();
+		} 
+		catch (NoSuchElementException e) {
+			System.out.println("addFirst throws correct exception for size=0!");
+		}
+		try {
+			fruits.getLast();
+		} 
+		catch (NoSuchElementException e) {
+			System.out.println("addLast throws correct exception for size=0!");
+		}
 		// System.out.println(Arrays.toString(fruits.data));
 		// System.out.println(fruits);
 		fruits.addFirst("apple");

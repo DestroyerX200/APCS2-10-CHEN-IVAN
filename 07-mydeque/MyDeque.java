@@ -1,6 +1,6 @@
 public class MyDeque<E> {
-	private E[] data;
-	private int size, start, end;
+	public E[] data;
+	public int size, start, end;
 
 	public MyDeque() {
     @SuppressWarnings("unchecked")
@@ -13,7 +13,7 @@ public class MyDeque<E> {
 
 	public MyDeque(int initialCapacity) {
 		if (initialCapacity < 10) {
-			this();
+			initialCapacity=10;
 		}
 		else {
 			@SuppressWarnings("unchecked")
@@ -30,17 +30,16 @@ public class MyDeque<E> {
 	}
 
 	public String toString() {
-		if (size==0) {
-			return "{}";
-		}
+		int length=data.length;
 		String retStr ="{";
-		for (int i=start; i<size; i++) {
-			retStr+= data[i] + ", ";
+		int index = start;
+		for (int i=0; i<size; i++) {
+			retStr+= data[index%length] + ", ";
+			index++;
 		}
-		for (int j=0; j<=end; j++) {
-			retStr+= data[j] + ", ";
+		if (retStr.length() > 2) {
+			retStr = retStr.substring(0,retStr.length()-2);
 		}
-		retStr = retStr.substring(0,retStr.length()-2);
 		retStr += "}";
 		return retStr;
 	}
@@ -48,24 +47,28 @@ public class MyDeque<E> {
   	if (element==null) {
   		throw new NullPointerException();
   	}
-  	else {
-	  	start--;
-	  	data[start] = element;
-	  	if (size==1) {
-	  		end = start;
-	  	}
+  	if (start==0) {
+  		start=size;
+  	}
+		size++;
+  	start--;
+  	data[start] = element;
+  	if (size==1) {
+  		end = start;
   	}
   }
   public void addLast(E element) throws NullPointerException {
   	if (element==null) {
   		throw new NullPointerException();
   	}
-  	else {
-	  	end++;
-	  	data[end] = element;
-	  	if (size==1) {
-	  		start=end;
-	  	}
+  	if (end==data.length-1) {
+  		end=-1;
+  	}
+		size++;
+  	end++;
+  	data[end] = element;
+  	if (size==1) {
+  		start=end;
   	}
   }
 }

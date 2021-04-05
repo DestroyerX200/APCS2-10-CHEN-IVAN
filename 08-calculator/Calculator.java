@@ -1,5 +1,6 @@
 import java.util.ArrayDeque;
 import java.lang.IllegalArgumentException;
+import java.util.Arrays;
 public class Calculator {
 	/*Evaluate a postfix expression stored in s.
 	 *Assume valid postfix notation, of ints doubles and operators separated by spaces.
@@ -30,16 +31,16 @@ public class Calculator {
 					stack.push(leftOperand/rightOperand);					
 				}
 				else if (tokens[i].equals("*")) {
-					stack.push(stack.pop()+stack.pop());
+					stack.push(stack.pop()*stack.pop());
 				}
 				else if (tokens[i].equals("%")) {
 					double rightOperand = stack.pop();
 					double leftOperand = stack.pop();
 					stack.push(leftOperand % rightOperand);					
 				}
-				else {
-					stack.push(Double.parseDouble(tokens[i]) );
-				}
+			}
+			else {
+				stack.push(Double.parseDouble(tokens[i]) );
 			}
 		}
 		if (stack.size() == 1) {

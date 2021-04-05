@@ -8,6 +8,11 @@ public class Calculator{
 	 *        Use the string parameter of your exception to indicate what happened.
 	 */
 	public static double eval(String s) {
+		String[] tokens = s.split(" ");
+		ArrayDeque<Integer> stack = new ArrayDeque<Integer>(s.length());
+		for (int i=0; i<tokens.length;i++) {
+			System.out.println(tokens[i]);
+		}
 		return 0;
 	}
         

@@ -61,6 +61,14 @@ public class BurnTrees{
         }
       }
     }
+    for (int r=0; r<map.length; r++) {
+      for (int c=0; c<map[r].length; c++) {
+        if (map[r][c]==NEWFIRE) {
+          spread(r, c);
+          map[r][c]==FIRE;
+        }
+      }
+    }    
   }
 
   private void spread(int row, int col) {

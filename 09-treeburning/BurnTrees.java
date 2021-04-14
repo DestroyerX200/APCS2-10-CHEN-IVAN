@@ -8,7 +8,6 @@ public class BurnTrees{
   private static int SPACE = 0;
   private static int NEWFIRE = 4;
 
-
   /*DO NOT UPDATE THIS
    *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
    */
@@ -63,7 +62,7 @@ public class BurnTrees{
     }
     for (int r=0; r<map.length; r++) {
       for (int c=0; c<map[r].length; c++) {
-        if (map[r][c]==NEWFIRE) {
+        if (map[r][c]==NEWFIRE) { 
           map[r][c]=FIRE;
         }
       }
@@ -181,13 +180,9 @@ public class BurnTrees{
       HEIGHT = Integer.parseInt(args[1]);
       DENSITY = Double.parseDouble(args[2]);
     }
-    if(args.length > 3){
-      DELAY = Integer.parseInt(args[3]);
-    }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
-
-    System.out.println(b.animate(DELAY));//animate all screens and print the final answer
+    System.out.println(b);//animate all screens and print the final answer
     //System.out.println(b.outputAll());//print all screens and the final answer
   }
 }

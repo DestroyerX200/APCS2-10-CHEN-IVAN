@@ -77,14 +77,14 @@ public class BurnTrees{
     if (row+1 < rows && map[row+1][col]==TREE) {
       map[row+1][col]=NEWFIRE;
     }
-    if (row-1 >= 0 && map[row+1][col]==TREE) {
-      map[row+1][col]=NEWFIRE;
+    if (row-1 >= 0 && map[row-1][col]==TREE) {
+      map[row-1][col]=NEWFIRE;
     }
-    if (col+1 < cols && map[row+1][col]==TREE) {
-      map[row+1][col]=NEWFIRE;
+    if (col+1 < cols && map[row][col+1]==TREE) {
+      map[row][col+1]=NEWFIRE;
     }
-    if (col-1 >= 0 && map[row+1][col]==TREE) {
-      map[row+1][col]=NEWFIRE;
+    if (col-1 >= 0 && map[row][col-1]==TREE) {
+      map[row][col-1]=NEWFIRE;
     }
   }
 

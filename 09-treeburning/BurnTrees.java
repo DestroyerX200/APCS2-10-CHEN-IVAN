@@ -57,7 +57,7 @@ public class BurnTrees{
       for (int c=0; c<map[r].length; c++) {
         if (map[r][c]==FIRE) {
           spread(r, c);
-          map[r][c]==ASH;
+          map[r][c]=ASH;
         }
       }
     }
@@ -65,7 +65,7 @@ public class BurnTrees{
       for (int c=0; c<map[r].length; c++) {
         if (map[r][c]==NEWFIRE) {
           spread(r, c);
-          map[r][c]==FIRE;
+          map[r][c]=FIRE;
         }
       }
     }    
@@ -75,16 +75,16 @@ public class BurnTrees{
     int rows=map.length;
     int cols=map[0].length;
     if (row+1 < rows && map[row+1][col]==TREE) {
-      map[row+1][col]==NEWFIRE;
+      map[row+1][col]=NEWFIRE;
     }
     if (row-1 >= 0 && map[row+1][col]==TREE) {
-      map[row+1][col]==NEWFIRE;
+      map[row+1][col]=NEWFIRE;
     }
     if (col+1 < cols && map[row+1][col]==TREE) {
-      map[row+1][col]==NEWFIRE;
+      map[row+1][col]=NEWFIRE;
     }
     if (col-1 >= 0 && map[row+1][col]==TREE) {
-      map[row+1][col]==NEWFIRE;
+      map[row+1][col]=NEWFIRE;
     }
   }
 

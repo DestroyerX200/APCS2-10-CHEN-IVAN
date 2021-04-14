@@ -8,6 +8,7 @@ public class BurnTrees{
   private static int SPACE = 0;
   private static int NEWFIRE = 4;
 
+
   /*DO NOT UPDATE THIS
    *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
    */
@@ -182,7 +183,7 @@ public class BurnTrees{
     }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
-    System.out.println(b);//animate all screens and print the final answer
+    System.out.println(b.animate(DELAY));//animate all screens and print the final answer
     //System.out.println(b.outputAll());//print all screens and the final answer
   }
 }

@@ -7,23 +7,20 @@ public class BurnTrees{
   private static int ASH = 3;
   private static int SPACE = 0;
   private static int NEWFIRE = 4;
+  private Frontier fires = new Frontier();
 
   public class Frontier {
     private Queue<int[]> frontier;
-    public int size;
     public Frontier() {
       frontier = new ArrayDeque<int[]>();
-      size=0;
     }
     public int size() {
-      return size;
+      return frontier.size();
     }
     public void add(int[]location) {
-      size++;
       frontier.add(location);
     }
     public int[] remove() {
-      size--;
       return frontier.remove();
     }
   }
@@ -55,14 +52,7 @@ public class BurnTrees{
    *@return false if any fires are still burning, true otherwise
    */
   public boolean done() {
-    for (int r=0; r<map.length; r++) {
-      for (int c=0; c<map[r].length; c++) {
-        if (map[r][c]==FIRE) {
-          return false;
-        } 
-      }
-    }
-    return true;
+    return fires.size()==0;
   }
 
 
@@ -72,37 +62,46 @@ public class BurnTrees{
    */
   public void tick() {
     ticks++;
-    for (int r=0; r<map.length; r++) {
-      for (int c=0; c<map[r].length; c++) {
-        if (map[r][c]==FIRE) {
-          spread(r, c);
-          map[r][c]=ASH;
-        }
-      }
-    }
-    for (int r=0; r<map.length; r++) {
-      for (int c=0; c<map[r].length; c++) {
-        if (map[r][c]==NEWFIRE) { 
-          map[r][c]=FIRE;
-        }
-      }
-    }    
+    int numFires = fires.size();
+    for (int i=0; i < numFires; i++) {
+      int[] coords = fires.remove();
+      int row = coords[0];
+      int col = coords[1];
+      spread(row, col);
+    }  
   }
 
   private void spread(int row, int col) {
+    map[row][col]=ASH;
     int rows=map.length;
     int cols=map[0].length;
     if (row+1 < rows && map[row+1][col]==TREE) {
-      map[row+1][col]=NEWFIRE;
+      int[] coords = new int[2];
+      coords[0]=row+1;
+      coords[1]=col;
+      map[row+1][col]=FIRE;
+      fires.add(coords);
     }
     if (row-1 >= 0 && map[row-1][col]==TREE) {
-      map[row-1][col]=NEWFIRE;
+      int[] coords = new int[2];
+      coords[0]=row-1;
+      coords[1]=col;
+      map[row-1][col]=FIRE;
+      fires.add(coords);
     }
     if (col+1 < cols && map[row][col+1]==TREE) {
-      map[row][col+1]=NEWFIRE;
+      int[] coords = new int[2];
+      coords[0]=row;
+      coords[1]=col+1;
+      map[row][col+1]=FIRE;
+      fires.add(coords);
     }
     if (col-1 >= 0 && map[row][col-1]==TREE) {
-      map[row][col-1]=NEWFIRE;
+      int[] coords = new int[2];
+      coords[0]=row;
+      coords[1]=col-1;
+      map[row][col-1]=FIRE;
+      fires.add(coords);
     }
   }
 
@@ -112,15 +111,18 @@ public class BurnTrees{
   public void start() {
     //If you add more instance variables you can add more here,
     //otherwise it is complete.
-    for(int i = 0; i < map.length; i++){
-      if(map[i][0]==TREE){
+    for(int i = 0; i < map.length; i++) {
+      if (map[i][0]==TREE) {
         map[i][0]=FIRE;
+        int[] fireCoords = {i, 0};
+        fires.add(fireCoords);
       }
     }
   }
 
   /*DO NOT UPDATE THIS*/
   public int getTicks(){
+    ticks++;
     return ticks;
   }
 

@@ -14,6 +14,14 @@ public class Tester {
 			DELAY = Integer.parseInt(args[3]);
 		}
 		BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
-		System.out.println(b.run());
+		int totalSteps=0;
+		long totalTime=0;
+		for(int i=0; i<1; i++) {
+			long start = System.currentTimeMillis();
+			totalSteps += b.run();
+			totalTime += System.currentTimeMillis()-start;
+		}
+		System.out.println("time: " + totalTime);
+		System.out.println("steps: " + totalSteps);
 	}
 }

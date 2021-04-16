@@ -1,12 +1,11 @@
 import java.util.*;
 public class BurnTrees{
   private int[][]map;
-  private int ticks;
+  private int ticks=0;
   private static int TREE = 2;
   private static int FIRE = 1;
   private static int ASH = 3;
   private static int SPACE = 0;
-  private static int NEWFIRE = 4;
   private Frontier fires = new Frontier();
 
   public class Frontier {
@@ -28,8 +27,8 @@ public class BurnTrees{
   /*DO NOT UPDATE THIS
    *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
    */
-  public int run(){
-    while(!done()){
+  public int run() {
+    while(!done()) {
       tick();
     }
     return getTicks();
@@ -65,9 +64,7 @@ public class BurnTrees{
     int numFires = fires.size();
     for (int i=0; i < numFires; i++) {
       int[] coords = fires.remove();
-      int row = coords[0];
-      int col = coords[1];
-      spread(row, col);
+      spread(coords[0], coords[1]);
     }  
   }
 
@@ -76,30 +73,22 @@ public class BurnTrees{
     int rows=map.length;
     int cols=map[0].length;
     if (row+1 < rows && map[row+1][col]==TREE) {
-      int[] coords = new int[2];
-      coords[0]=row+1;
-      coords[1]=col;
+      int[] coords = {row+1, col};
       map[row+1][col]=FIRE;
       fires.add(coords);
     }
     if (row-1 >= 0 && map[row-1][col]==TREE) {
-      int[] coords = new int[2];
-      coords[0]=row-1;
-      coords[1]=col;
+      int[] coords = {row-1, col};
       map[row-1][col]=FIRE;
       fires.add(coords);
     }
     if (col+1 < cols && map[row][col+1]==TREE) {
-      int[] coords = new int[2];
-      coords[0]=row;
-      coords[1]=col+1;
+      int[] coords = {row, col+1};
       map[row][col+1]=FIRE;
       fires.add(coords);
     }
     if (col-1 >= 0 && map[row][col-1]==TREE) {
-      int[] coords = new int[2];
-      coords[0]=row;
-      coords[1]=col-1;
+      int[] coords = {row, col-1};
       map[row][col-1]=FIRE;
       fires.add(coords);
     }
@@ -122,7 +111,6 @@ public class BurnTrees{
 
   /*DO NOT UPDATE THIS*/
   public int getTicks(){
-    ticks++;
     return ticks;
   }
 

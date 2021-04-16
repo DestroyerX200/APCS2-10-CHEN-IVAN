@@ -8,6 +8,25 @@ public class BurnTrees{
   private static int SPACE = 0;
   private static int NEWFIRE = 4;
 
+  public class Frontier {
+    private Queue<int[]> frontier;
+    public int size;
+    public Frontier() {
+      frontier = new ArrayDeque<int[]>();
+      size=0;
+    }
+    public int size() {
+      return size;
+    }
+    public void add(int[]location) {
+      size++;
+      frontier.add(location);
+    }
+    public int[] remove() {
+      size--;
+      return frontier.remove();
+    }
+  }
 
   /*DO NOT UPDATE THIS
    *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
@@ -90,7 +109,7 @@ public class BurnTrees{
   /*
    *Sets the trees in the left column of the forest on fire
    */
-  public void start(){
+  public void start() {
     //If you add more instance variables you can add more here,
     //otherwise it is complete.
     for(int i = 0; i < map.length; i++){
@@ -99,10 +118,6 @@ public class BurnTrees{
       }
     }
   }
-
-
-
-
 
   /*DO NOT UPDATE THIS*/
   public int getTicks(){

@@ -1,5 +1,5 @@
 public class MyHeap {
-	private static void pushDown(int[] data, int size, int index) {
+	public static void pushDown(int[] data, int size, int index) {
 		if (2*index+1 < size) {
 			int childIndex = 2*index+1;
 			int maxChild = data[2*index+1];

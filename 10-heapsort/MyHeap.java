@@ -23,4 +23,14 @@ public class MyHeap {
 			pushDown(data, data.length, i);
 		}
 	}
+	private static void remove(int[]data, int size) {
+		swap(data, 0, size-1);
+		pushDown(data, size-1, 0);
+	}
+	public static void heapsort(int[]data) {
+		int size = data.length;
+		for(int i=size; i>1; i--) {
+			remove(data, i);
+		}
+	}
 }

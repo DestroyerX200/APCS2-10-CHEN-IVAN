@@ -1,17 +1,23 @@
 import java.util.Arrays;
 public class Tester {
 	public static void main(String[] args) {
-		int size = 10000;
-		double numTests = 1000;
-		double passedTests=0;
-		for (double i=0; i < numTests; i++) {
-			int[] test = makeArray(size);
-			MyHeap.buildHeap(test);
-			if (isHeap(test)) {
-				passedTests++;
-			}
-		}
-		System.out.println(100*numTests/passedTests + "% of tests passed!");
+		// int size = 10000;
+		// double numTests = 1000;
+		// double passedTests=0;
+		// for (double i=0; i < numTests; i++) {
+		// 	int[] test = makeArray(size);
+		// 	MyHeap.buildHeap(test);
+		// 	if (isHeap(test)) {
+		// 		passedTests++;
+		// 	}
+		// }
+		// System.out.println(100*numTests/passedTests + "% of tests passed!");
+
+		int[] testSort1 = makeArray(20);
+		System.out.println(Arrays.toString(testSort1));
+		MyHeap.heapsort(testSort1);
+		System.out.println(Arrays.toString(testSort1));
+
 	}
 	public static boolean isHeap(int[] data) {
 		for (int i=0; i<data.length; i++) {

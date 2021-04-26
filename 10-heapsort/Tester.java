@@ -1,14 +1,17 @@
 import java.util.Arrays;
 public class Tester {
 	public static void main(String[] args) {
-		int[] test1 = {1,15,8,10,5,7,6,2,9};
-		MyHeap.pushDown(test1, 9, 0);
-		System.out.println(Arrays.toString(test1));
-		int[] unsortedArray1 = {1, 3, 2, 4, 6, 5, 10, 9, 8};
-		System.out.println(isHeap(unsortedArray1));
-    MyHeap.buildHeap(unsortedArray1);
-		System.out.println(isHeap(unsortedArray1));
-		System.out.println(Arrays.toString(unsortedArray1));
+		int size = 10000;
+		double numTests = 1000;
+		double passedTests=0;
+		for (double i=0; i < numTests; i++) {
+			int[] test = makeArray(size);
+			MyHeap.buildHeap(test);
+			if (isHeap(test)) {
+				passedTests++;
+			}
+		}
+		System.out.println(100*numTests/passedTests + "% of tests passed!");
 	}
 	public static boolean isHeap(int[] data) {
 		for (int i=0; i<data.length; i++) {
@@ -20,5 +23,12 @@ public class Tester {
 			}
 		}
 		return true;
+	}
+	public static int[] makeArray(int size) {
+		int[] retArray = new int[size];
+		for(int i=0; i<size; i++) {
+			retArray[i] = (int) (10000*Math.random());
+		}
+		return retArray;
 	}
 }

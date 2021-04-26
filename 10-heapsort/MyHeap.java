@@ -18,4 +18,9 @@ public class MyHeap {
 		data[i1] = data[i2];
 		data[i2] = temp;
 	}
+	public static void buildHeap(int[] data) {
+		for (int i=data.length; i >= 0; i--) {
+			pushDown(data, data.length, i);
+		}
+	}
 }

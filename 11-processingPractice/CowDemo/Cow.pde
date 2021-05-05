@@ -1,6 +1,7 @@
 public class Cow {
   float x, y, dx, dy, radius;
   color c;
+  boolean colliding, selected;
 
   Cow(float rad, float x, float y, float dx, float dy) {
     radius = rad;
@@ -27,13 +28,20 @@ public class Cow {
     stroke(0);
     fill(c);
     ellipse(x, y, radius*2, radius*2);
-    
+    if (selected) {
+      float dyEye, dxEye;
+      dxEye = 0.5 * radius;
+      dyEye = 0.5 * radius;
+      fill(255);
+      ellipse(x-dxEye, y-dyEye, radius/5, radius/5);
+      ellipse(x+dxEye, y-dyEye, radius/5, radius/5);
+    }
   }
 
   void click(){
     if (dist((float)mouseX, (float)mouseY, x, y)<= radius) {
-      radius++;
-      c += 20;
+      selected = !selected;
     }
+    
   }
 }

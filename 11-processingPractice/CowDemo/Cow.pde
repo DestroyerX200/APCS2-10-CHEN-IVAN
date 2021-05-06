@@ -29,12 +29,19 @@ public class Cow {
     fill(c);
     ellipse(x, y, radius*2, radius*2);
     if (selected) {
+      //eyes
       float dyEye, dxEye;
       dxEye = 0.5 * radius;
       dyEye = 0.5 * radius;
       fill(255);
-      ellipse(x-dxEye, y-dyEye, radius/5, radius/5);
-      ellipse(x+dxEye, y-dyEye, radius/5, radius/5);
+      ellipse(x-dxEye, y-dyEye, radius/4, radius/4);
+      ellipse(x+dxEye, y-dyEye, radius/4, radius/4);
+      fill(0);
+      ellipse(x-dxEye, y-dyEye, radius/10, radius/10);
+      ellipse(x+dxEye, y-dyEye, radius/10, radius/10);
+      //mouth
+      fill(255);
+      arc(x, y, radius, radius, PI/8, PI-PI/8, CHORD);
     }
   }
 

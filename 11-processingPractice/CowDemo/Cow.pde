@@ -26,7 +26,12 @@ public class Cow {
   }
   void display() {
     stroke(0);
-    fill(c);
+    if (colliding) {
+      fill(211, 41, 41, 50);
+    }
+    else {
+      fill(c);
+    }
     ellipse(x, y, radius*2, radius*2);
     if (selected) {
       //eyes

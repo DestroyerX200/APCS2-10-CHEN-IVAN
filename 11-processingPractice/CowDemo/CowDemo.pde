@@ -8,6 +8,15 @@ void setup() {
 
 void draw() {
   background(200);
+  for (Cow c: particles) {
+    int collisions = 0;
+    for (Cow b: particles) {
+      if (b!=c && touching(b, c) ) {
+        collisions++;
+      }
+    }
+      c.colliding = collisions > 0;
+  }
   for (Cow c : particles) {
     c.move();
     c.display();
@@ -39,4 +48,8 @@ void keyPressed() {
     particles.clear();
   }
   //println(keyCode);
+}
+
+boolean touching(Cow a, Cow b) {
+  return dist(a.x, a.y, b.x, b.y) <= a.radius+b.radius;
 }

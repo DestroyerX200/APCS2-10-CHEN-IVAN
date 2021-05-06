@@ -42,6 +42,9 @@ public class Cow {
       //mouth
       fill(255);
       arc(x, y, radius, radius, PI/8, PI-PI/8, CHORD);
+      stroke(255);
+      line(x+radius*sqrt(2)/2, y-radius*sqrt(2)/2, x+radius+2, y-radius+2);
+      text("dy: " + dy + "\ndx: " + dx, x+radius+2, y-radius+2);
     }
   }
 
